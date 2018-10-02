@@ -15,6 +15,11 @@ echo "-----> Running application migrations"
 docker exec -it "$web" sequelize db:migrate
 echo ""
 
+# Run Sequalize's migrations.
+echo "-----> Installing seeders (fake data)"
+docker exec -it "$web" sequelize db:seed:all
+echo ""
+
 ended_at=$(date +"%s")
 
 minutes=$(((ended_at - started_at) / 60))
