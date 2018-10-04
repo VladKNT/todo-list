@@ -1,5 +1,6 @@
 FROM node:8.9.0
 
+ARG NODE_ENV="production"
 
 RUN mkdir /todo-list
 WORKDIR /todo-list

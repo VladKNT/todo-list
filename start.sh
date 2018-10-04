@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 ###############################################################################
 ## Todo List Quickstart Script
 ###############################################################################
@@ -8,16 +9,11 @@ echo "-----> Provisioning containers"
 docker-compose up -d
 echo ""
 
-web=$(docker-compose ps | grep web_1 | awk '{print $1}')
+web=$(docker-compose ps | grep web-dev_1 | awk '{print $1}')
 
 # Run Sequalize's migrations.
 echo "-----> Running application migrations"
 docker exec -it "$web" sequelize db:migrate
-echo ""
-
-# Run Sequalize's migrations.
-echo "-----> Installing seeders (fake data)"
-docker exec -it "$web" sequelize db:seed:all
 echo ""
 
 ended_at=$(date +"%s")

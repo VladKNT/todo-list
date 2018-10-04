@@ -3,13 +3,15 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
       return queryInterface.bulkInsert('TodoItems', [{
-        content: 'Initial item 1',
+        content: 'Test item 1',
         todoId: 1,
+        complete: true,
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
-        content: 'Initial item 2',
+        content: 'Test item 2',
         todoId: 1,
+        complete: false,
         createdAt: new Date(),
         updatedAt: new Date()
       }], {});

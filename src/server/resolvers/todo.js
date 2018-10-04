@@ -2,7 +2,7 @@ import { Todo, TodoItem } from '../models';
 
 export default {
   Mutation: {
-    createTodo: (parent, { title }) => Todo.create(title),
+    createTodo: (parent, { title }) => Todo.create({ title }),
 
     updateTodo: async (parent, args) => {
       let todo = await Todo.findById(args.id, {
@@ -35,7 +35,11 @@ export default {
       include: [{
         model: TodoItem,
         as: 'todoItems'
-      }]
+      }],
+      order: [[{
+        model: TodoItem,
+        as: 'todoItems'
+      }, 'id', 'ASC']]
     })
   },
 };

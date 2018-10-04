@@ -3,22 +3,24 @@
     "username": "postgres",
     "password": "password",
     "database": "todo-dev",
-    "host": "db",
+    "host": "db-dev",
     "dialect": "postgres",
     "operatorsAliases": "Op"
   },
   "test": {
     "username": "postgres",
     "password": "password",
-    "database": "todo-dev",
-    "host": "db",
-    "dialect": "postgres"
+    "database": "todo-test",
+    "host": "db-test",
+    "dialect": "postgres",
+    "operatorsAliases": "Op"
   },
   "production": {
     "username": "postgres",
     "password": "password",
-    "database": "todo-dev",
+    "database": "todo-prod",
     "host": "db",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "operatorsAliases": "Op"
   }
 }

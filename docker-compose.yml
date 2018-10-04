@@ -1,16 +1,19 @@
 version: '2'
 
 services:
-  web:
-    build: .
+  web-dev:
+    build:
+      context: .
+    environment:
+      NODE_ENV: development
     volumes:
-    - "./src:/todo-list/src"
+    - "./:/todo-list/"
     ports:
       - "3000:3000"
     links:
-    - "db:postgres"
+    - "db-dev"
 
-  db:
+  db-dev:
     image: postgres:10
     environment:
       - POSTGRES_PASSWORD=password
