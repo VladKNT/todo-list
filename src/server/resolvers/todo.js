@@ -36,10 +36,10 @@ export default {
         model: TodoItem,
         as: 'todoItems'
       }],
-      order: [[{
-        model: TodoItem,
-        as: 'todoItems'
-      }, 'id', 'ASC']]
+      order: [
+        ['id', 'ASC'],
+        [{ model: TodoItem, as: 'todoItems' }, 'createdAt', 'ASC' ],
+      ]
     })
   },
 };
