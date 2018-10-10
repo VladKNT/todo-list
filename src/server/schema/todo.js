@@ -12,7 +12,7 @@ export default gql`
   type Mutation {
     createTodo(title: String!): Todo!
     updateTodo(id: Int!, title: String): Todo!
-    deleteTodo(id: Int!): Boolean!
+    deleteTodo(id: Int!): Int!
   }
   
   type Query {

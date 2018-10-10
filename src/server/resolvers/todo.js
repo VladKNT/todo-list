@@ -19,7 +19,7 @@ export default {
       let todo = await Todo.findById(id);
       await todo.destroy();
 
-      return true;
+      return id;
     }
   },
 

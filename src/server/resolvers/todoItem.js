@@ -14,7 +14,7 @@ export default {
       let todoItem = await TodoItem.findById(id);
       await todoItem.destroy();
 
-      return true;
+      return todoItem;
     },
   }
 }
