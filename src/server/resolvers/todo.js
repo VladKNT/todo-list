@@ -1,8 +1,17 @@
 import { Todo, TodoItem } from '../models';
+import pubsub, { EVENTS } from "../subscriptions";
 
 export default {
   Mutation: {
-    createTodo: (parent, { title }) => Todo.create({ title }),
+    createTodo: async (parent, { title }) => {
+      const todo = await Todo.create({ title });
+
+      pubsub.publish(EVENTS.TODO.LIST_SAVED, {
+        todoSaved: todo
+      });
+
+      return todo;
+    },
 
     updateTodo: async (parent, args) => {
       let todo = await Todo.findById(args.id, {
@@ -12,12 +21,22 @@ export default {
         }]
       });
 
-      return todo.update(args, { fields: Object.keys(args) });
+      await todo.update(args, { fields: Object.keys(args) });
+
+      pubsub.publish(EVENTS.TODO.LIST_SAVED, {
+        todoSaved: todo
+      });
+
+      return todo;
     },
 
     deleteTodo: async (parent, { id }) => {
       let todo = await Todo.findById(id);
       await todo.destroy();
+
+      pubsub.publish(EVENTS.TODO.LIST_DELETED, {
+        todoDeleted: id
+      });
 
       return id;
     }
@@ -42,4 +61,14 @@ export default {
       ]
     })
   },
+
+  Subscription: {
+    todoSaved: {
+      subscribe: () => pubsub.asyncIterator(EVENTS.TODO.LIST_SAVED)
+    },
+
+    todoDeleted: {
+      subscribe: () => pubsub.asyncIterator(EVENTS.TODO.LIST_DELETED)
+    }
+  }
 };

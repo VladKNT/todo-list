@@ -19,4 +19,9 @@ export default gql`
     getTodoById(id: Int!): Todo!
     getAllTodos: [Todo!]
   }
+  
+  type Subscription {
+    todoSaved: Todo!
+    todoDeleted: Int!
+  }
 `;

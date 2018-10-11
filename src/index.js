@@ -1,6 +1,6 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-
+import http from 'http';
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
 
 const typeDefs = mergeTypes(fileLoader('/todo-list/src/server/schema'));
@@ -24,4 +24,9 @@ server.applyMiddleware({
   app
 });
 
-app.listen(3000);
+const httpServer = http.createServer(app);
+server.installSubscriptionHandlers(httpServer);
+
+httpServer.listen(3000, () => {
+  console.info('Apollo Server on http://localhost:3000/graphql');
+});

@@ -15,4 +15,9 @@ export default gql`
     updateTodoItem(id: Int!, content: String, complete: Boolean): TodoItem!
     deleteTodoItem(id: Int!): TodoItem!
   }
+  
+  type Subscription {
+    todoItemSaved: TodoItem!
+    todoItemDeleted: TodoItem!
+  }
 `;

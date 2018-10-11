@@ -155,7 +155,7 @@ describe('todo resolvers', () => {
     const { data } = response;
     expect(data).toMatchObject({
       data: {
-        "deleteTodo": true
+        "deleteTodo": 2
       }
     })
   });

@@ -51,7 +51,9 @@ describe('todoItem resolvers', () => {
     const response = await axios.post('http://localhost:3000/graphql', {
       query: `
         mutation {
-          deleteTodoItem(id: 3) 
+          deleteTodoItem(id: 3) {
+            id
+          }
         } 
       `
     });
@@ -59,7 +61,9 @@ describe('todoItem resolvers', () => {
     const { data } = response;
     expect(data).toMatchObject({
       data: {
-        "deleteTodoItem": true
+        "deleteTodoItem": {
+          id: 3
+        }
       }
     })
   });
