@@ -4,11 +4,12 @@ module.exports = (sequelize, DataTypes) => {
   const TodoItem = sequelize.define('TodoItem', {
     content: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: { notEmpty: true }
     },
     complete: {
       type: DataTypes.BOOLEAN,
-        defaultValue: false
+      defaultValue: false
     }
   }, {});
 

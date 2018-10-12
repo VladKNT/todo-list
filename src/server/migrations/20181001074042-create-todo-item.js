@@ -10,7 +10,8 @@ module.exports = {
       },
       content: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: { notEmpty: true }
       },
       complete: {
         type: Sequelize.BOOLEAN,
